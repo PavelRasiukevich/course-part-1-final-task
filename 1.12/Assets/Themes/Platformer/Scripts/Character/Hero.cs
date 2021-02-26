@@ -34,7 +34,7 @@ namespace UnityBase.Platformer
         #region States
         private CharacterBaseState currentCharacterState;
         private CharacterBaseState previousState;
-        private Dictionary<string, CharacterBaseState> listOfStates;
+        private Dictionary<States, CharacterBaseState> listOfStates;
         #endregion
 
 
@@ -97,7 +97,7 @@ namespace UnityBase.Platformer
             get => !charSpriteRenderer.flipX;
         }
 
-        public Dictionary<string, CharacterBaseState> ListOfStates { get => listOfStates; }
+        public Dictionary<States, CharacterBaseState> ListOfStates { get => listOfStates; }
         #endregion
 
         private void OnEnable()
@@ -115,14 +115,14 @@ namespace UnityBase.Platformer
 
             contacts = new List<Collider2D>();
 
-            listOfStates = new Dictionary<string, CharacterBaseState>
+            listOfStates = new Dictionary<States, CharacterBaseState>
             {
-                {"Idle", new CharacterStateIdle() },
-                {"Run", new CharacterStateRun() },
-                {"Jump", new CharacterStateJump() },
-                {"StickToWall", new CharacterStateStickToWall() },
-                {"Fall", new CharacterStateFall() },
-                {"Die", new CharacterStateDie() }
+                {States.Idle, new CharacterStateIdle() },
+                {States.Run, new CharacterStateRun() },
+                {States.Jump, new CharacterStateJump() },
+                {States.StickToWall, new CharacterStateStickToWall() },
+                {States.Fall, new CharacterStateFall() },
+                {States.Die, new CharacterStateDie() }
 
             };
 
@@ -157,7 +157,7 @@ namespace UnityBase.Platformer
 
         private void Start()
         {
-            TransitionToState(listOfStates["Idle"]);
+            TransitionToState(listOfStates[States.Idle]);
             //InvokeRepeating("ShowCurrentState", 0.0f, 0.5f);
         }
 
@@ -200,7 +200,7 @@ namespace UnityBase.Platformer
 
         public void Die()
         {
-            currentCharacterState = listOfStates["Die"];
+            currentCharacterState = listOfStates[States.Die];
             currentCharacterState.EnterState(this);
         }
 

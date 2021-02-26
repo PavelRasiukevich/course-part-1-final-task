@@ -20,12 +20,12 @@ namespace UnityBase.Platformer
         {
             if (character.IsGrounded)
             {
-                character.TransitionToState(character.ListOfStates["Idle"]);
+                character.TransitionToState(character.ListOfStates[States.Idle]);
             }
             else if (Input.GetAxis("Jump") > Mathf.Epsilon)
             {
                 character.PreviousState = character.CurrentCharacterState;
-                character.TransitionToState(character.ListOfStates["Jump"]);
+                character.TransitionToState(character.ListOfStates[States.Jump]);
             }
 
         }

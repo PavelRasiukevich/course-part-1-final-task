@@ -11,7 +11,7 @@ namespace UnityBase.Platformer
 
             character.State = States.Jump;
 
-            if (character.PreviousState == character.ListOfStates["StickToWall"])
+            if (character.PreviousState == character.ListOfStates[States.StickToWall])
             {
 
                 if (character.IsCatchingRightWall)
@@ -23,7 +23,7 @@ namespace UnityBase.Platformer
                     character.CharRb2D.AddForce(new Vector2(-1, 1) * character.JumpForce, ForceMode2D.Impulse);
                 }
             }
-            else if (character.PreviousState == character.ListOfStates["Fall"])
+            else if (character.PreviousState == character.ListOfStates[States.Fall])
             {
                 character.CharSpriteRenderer.flipX = character.IsFlipedX;
 
@@ -54,7 +54,7 @@ namespace UnityBase.Platformer
 
             if (character.CharRb2D.velocity.y < 1)
             {
-                character.TransitionToState(character.ListOfStates["Fall"]);
+                character.TransitionToState(character.ListOfStates[States.Fall]);
             }
         }
     }

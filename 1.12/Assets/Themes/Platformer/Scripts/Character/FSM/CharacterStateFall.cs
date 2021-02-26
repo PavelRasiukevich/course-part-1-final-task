@@ -21,20 +21,20 @@ namespace UnityBase.Platformer
 
             if (character.IsGrounded || character.IsOnSlopeSurface)
             {
-                character.TransitionToState(character.ListOfStates["Idle"]);
+                character.TransitionToState(character.ListOfStates[States.Idle]);
             }
             else if (Input.GetAxis("Horizontal") > 0 && character.IsCatchingRightWall)
             {
-                character.TransitionToState(character.ListOfStates["StickToWall"]);
+                character.TransitionToState(character.ListOfStates[States.StickToWall]);
             }
             else if (Input.GetAxis("Horizontal") < 0 && character.IsCatchingLeftWall)
             {
-                character.TransitionToState(character.ListOfStates["StickToWall"]);
+                character.TransitionToState(character.ListOfStates[States.StickToWall]);
             }
             else if (Input.GetAxis("Jump") > Mathf.Epsilon && (character.IsCatchingLeftWall || character.IsCatchingRightWall))
             {
                 character.PreviousState = character.CurrentCharacterState;
-                character.TransitionToState(character.ListOfStates["Jump"]);
+                character.TransitionToState(character.ListOfStates[States.Jump]);
             }
         }
     }

@@ -29,11 +29,11 @@ namespace UnityBase.Platformer
                     character.CharRb2D.velocity = new Vector2(h * character.Speed, character.CharRb2D.velocity.y);
 
                     if (Input.GetAxis("Jump") > Mathf.Epsilon)
-                        character.TransitionToState(character.ListOfStates["Jump"]);
+                        character.TransitionToState(character.ListOfStates[States.Jump]);
                 }
                 else
                 {
-                    character.TransitionToState(character.ListOfStates["Idle"]);
+                    character.TransitionToState(character.ListOfStates[States.Idle]);
                 }
 
                 if (character.CharRb2D.velocity.x > 0)
@@ -47,7 +47,7 @@ namespace UnityBase.Platformer
             }
             else
             {
-                character.TransitionToState(character.ListOfStates["Fall"]);
+                character.TransitionToState(character.ListOfStates[States.Fall]);
             }
 
         }

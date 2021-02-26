@@ -23,11 +23,11 @@ namespace UnityBase.Platformer
             {
 
                 if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
-                    character.TransitionToState(character.ListOfStates["Run"]);
+                    character.TransitionToState(character.ListOfStates[States.Run]);
 
                 else if (Input.GetAxis("Jump") > Mathf.Epsilon)
                 {
-                    character.TransitionToState(character.ListOfStates["Jump"]);
+                    character.TransitionToState(character.ListOfStates[States.Jump]);
                 }
             }
         }
