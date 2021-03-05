@@ -12,6 +12,7 @@ namespace UnityBase.Platformer
 
         #region Character's Variables
         [SerializeField] float speed, jumpForce;
+        private Vector2 positionToRespawn;
         private States state;
         #endregion
 
@@ -98,6 +99,7 @@ namespace UnityBase.Platformer
         }
 
         public Dictionary<States, CharacterBaseState> ListOfStates { get => listOfStates; }
+        public Vector2 PositionToRespawn { get => positionToRespawn; set => positionToRespawn = value; }
         #endregion
 
         private void OnEnable()
@@ -107,7 +109,9 @@ namespace UnityBase.Platformer
 
         private void HandleDieStateLastFrame()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            transform.position = positionToRespawn;
+            currentCharacterState = listOfStates[States.Idle];
+            currentCharacterState.EnterState(this);
         }
 
         private void Awake()
@@ -180,22 +184,6 @@ namespace UnityBase.Platformer
         {
             currentCharacterState = state;
             currentCharacterState.EnterState(this);
-        }
-
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-
-            /* if (collision.GetComponent<Tree>())
-             {
-                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-             }*/
-
         }
 
         public void Die()
